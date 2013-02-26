@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+{% extends "base.html" %}
+{% block title %}Banner test{% endblock %}
+{% block javascript %}
+  <script type="text/javascript" src="/js/holder.js"></script>
+{% endblock %}
+{% block content %}
+  <div class="container" style="box-shadow:0 1px 10px rgba(0, 0, 0, 0.1)">
+    <div id="header">
+      <div id="toolbar" class="navbar navbar-static-top">
+        <div class="navbar-inner">
+          <ul class="nav pull-right">
+            {% if user %}
+            <li><a href="#">siebz0r</a></li>
+            <li><a href="#">logout</a></li>
+            {% else %}
+            <li><a href="/login">login</a></li>
+            {% endif %}
+          </ul>
+          <form class="form-search navbar-search pull-right">
+            <div class="input-append">
+              <input type="text" class="search-query" placeholder="Search...">
+              <button class="btn" type="submit"><i class="icon-search"></i>&nbsp;</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="banner">
+        <img alt="Placeholder for logo" src="/js/holder.js/300x100/text:logo">
+      </div>
+      <div id="navigation" class="navbar navbar-static-top">
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li {% if active == 'home' %} class="active" {% endif %}><a href="#">Home</a></li>
+            <li {% if active == 'wiki' %} class="active" {% endif %}><a href="#">Wiki</a></li>
+            <li {% if active == 'forum' %} class="active" {% endif %}><a href="#">Forum</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      {% block page %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

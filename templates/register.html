@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+{% extends "banner.html" %}
+{% block title %}Registration{% endblock %}
+{% block page %}
+<form class="form-horizontal" action="/register" method="post">
+  <fieldset>
+    <legend>Registration</legend>
+    <div>
+      <div class="control-group">
+        <div class="controls">
+          <input name="username" type="text" placeholder="User name" title="User name is used to log in. This field is required."/>
+          <span class="help-inline"></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <input type="text" placeholder="Password" />
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <input type="password" placeholder="Verify password" />
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <input type="text" placeholder="email" />
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn">Register</button>
+    </div>
+  </fieldset>
+</form>
+{% endblock %}
+{% block javascript %}
+{{super()}}
+<script type="text/javascript">
+$(function()
+{
+  $( document ).tooltip();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% block head %}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.css"/>
+  <script src="/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+  <link rel="stylesheet" href="/css/jquery-ui-1.10.1.css">
+  <script type="text/javascript" src="/js/jquery-ui-1.10.1.js"></script>
+  {% endblock %}
+</head>
+<body>
+  {% block content %}
+  {% endblock %}
+  {% block footer %}
+  {% endblock %}
+  {% block javascript %}
+  {% endblock %}
+</body>
+</html>

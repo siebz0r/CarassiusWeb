@@ -1,0 +1,30 @@
+{% macro dropdown(items, class='') -%}
+<ul class="dropdown-menu {{ class }}" role="menu" aria-labelledby="dropdownMenu">
+  {% for item in items %}
+  <li>
+    {{ item }}
+  </li>
+  {% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro buttongroup(buttons, vertical=False) -%}
+<div class="btn-group {{ 'btn-group-vertical' if vertical }}">
+  {% for button in buttons %}
+  {{ button }}
+  {% endfor %}
+</div>
+{%- endmacro %}
+
+{% macro tooltip(selector, content=None) -%}
+<script type="text/javascript">
+  $("{{ selector }}").tooltip(
+  {
+    {% if content %}
+    content: "{{ content }}",
+    {% endif %}
+    position: {my:"left top",at:"left bottom"},
+    items: "*"
+  });
+</script>
+{%- endmacro %}
