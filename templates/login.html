@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1)">
+  <form class="form-horizontal" action="/login" method="post">
+    <fieldset>
+      <legend>Login</legend>
+      <div class="control-group">
+        <div class="controls">
+          <input name="username" type="text" placeholder="User name"
+            title="User name is used to log in. This field is required." />
+          <span class="help-inline"></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <input type="password" placeholder="Password" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn">Login</button>
+      </div>
+    </fieldset>
+  </form>
+  <fieldset>
+    <legend>Or log in with:</legend>
+    <div class="row" style="text-align: center">
+      {% for x in ['FaceBook', 'Twitter', 'LinkedIn'] %}
+      <div class="span4">
+        <button class="btn">{{ x }}</button>
+      </div>
+      {% endfor %}
+    </div>
+  </fieldset>
+</div>
+{% endblock %}

@@ -6,25 +6,45 @@
   <fieldset>
     <legend>Registration</legend>
     <div>
-      <div class="control-group">
+      <div class="control-group {{ 'error' if form.user_name.errors }}">
         <div class="controls">
-          <input name="username" type="text" placeholder="User name" title="User name is used to log in. This field is required."/>
-          <span class="help-inline"></span>
+          {{ form.user_name(placeholder="%s" % form.user_name.label.text) }}
+          {% if form.user_name.errors %}
+            <span class="help-inline alert alert-error">
+              {% for error in form.user_name.errors %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {{ 'error' if form.password.errors }}">
         <div class="controls">
-          <input type="text" placeholder="Password" />
+          {{ form.password(placeholder="%s" % form.password.label.text) }}
+          {% if form.password.errors %}
+            <span class="help-inline alert alert-error">
+              {% for error in form.password.errors %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {{ 'error' if form.password_verify.errors }}">
         <div class="controls">
-          <input type="password" placeholder="Verify password" />
+          {{ form.password_verify(placeholder="%s" % form.password_verify.label.text) }}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {{ 'error' if form.email_address.errors }}">
         <div class="controls">
-          <input type="text" placeholder="email" />
+          {{ form.email_address(placeholder="%s" % form.email_address.label.text) }}
+          {% if form.email_address.errors %}
+            <span class="help-inline alert alert-error">
+              {% for error in form.email_address.errors %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
       </div>
     </div>
