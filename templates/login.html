@@ -1,24 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-{% extends "base.html" %}
-{% block content %}
+{% extends "banner.html" %}
+{% block title %}Login{% endblock %}
+{% block page %}
 <div class="container" style="box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1)">
   <form class="form-horizontal" action="/login" method="post">
     <fieldset>
       <legend>Login</legend>
-      <div class="control-group">
+      {% if form.errors['credentials'] %}
+        <div class="alert alert-error controls" style="display: inline-block">
+          {{ form.errors['credentials'] }}
+        </div>
+      {% endif %}
+      <div class="control-group  {{ 'error' if form.user_name.errors }}">
         <div class="controls">
-          <input name="username" type="text" placeholder="User name"
-            title="User name is used to log in. This field is required." />
-          <span class="help-inline"></span>
+          {{ form.user_name(placeholder="%s" % form.user_name.label.text) }}
+          {% if form.user_name.errors %}
+            <span class="help-inline alert alert-error">
+              {% for error in form.user_name.errors %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group  {{ 'error' if form.password.errors }}">
         <div class="controls">
-          <input type="password" placeholder="Password" />
+          {{ form.password(placeholder="%s" % form.password.label.text) }}
+          {% if form.password.errors %}
+            <span class="help-inline alert alert-error">
+              {% for error in form.password.errors %}
+                {{ error }}
+              {% endfor %}
+            </span>
+          {% endif %}
         </div>
       </div>
       <div class="form-actions">
         <button type="submit" class="btn">Login</button>
+        <a href="/register" class="btn">Register</a>
       </div>
     </fieldset>
   </form>
