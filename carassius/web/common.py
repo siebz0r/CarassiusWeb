@@ -3,13 +3,17 @@ Created on Feb 24, 2013
 
 @author: siebz0r
 '''
-import webapp2
 import jinja2
-from wtforms.form import Form
-from wtforms.fields.simple import PasswordField
-from wtforms.validators import Length, DataRequired, EqualTo, Email
 from model.common import Person
+from model.common import RegistrationActivationToken
+import webapp2
 from wtforms.fields.core import StringField
+from wtforms.fields.simple import PasswordField
+from wtforms.form import Form
+from wtforms.validators import DataRequired
+from wtforms.validators import Email
+from wtforms.validators import EqualTo
+from wtforms.validators import Length
 
 class RegistrationHandler(webapp2.RequestHandler):
     class RegistrationForm(Form):
@@ -30,7 +34,8 @@ class RegistrationHandler(webapp2.RequestHandler):
             person.user_name = form.user_name.data
             person.email_address = form.email_address.data
             Person.register(person, form.password.data)
-            # TODO: Render registration success page
+            self.render({"success": True,
+                         "email_address": person.email_address})
         else:
             template_values = { "form" : form }
             self.render(template_values)
@@ -65,3 +70,17 @@ class LoginHandler(webapp2.RequestHandler):
     def render(self, template_values):
         template = jinja2.env.get_template("login.html")
         self.response.out.write(template.render(template_values))
+
+
+class ActivationHandler(webapp2.RequestHandler):
+    def get(self, token):
+        token = RegistrationActivationToken.query(
+                              RegistrationActivationToken.token == token).get()
+        if token:
+            token.activate()
+            self.render(True)
+        self.render(False)
+
+    def render(self, success):
+        template = jinja2.env.get_template("activate.html")
+        self.response.out.write(template.render({ 'success' : success }))

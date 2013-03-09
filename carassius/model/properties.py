@@ -16,4 +16,7 @@ class StringProperty(ndb.StringProperty):
 class EmailProperty(StringProperty):
     def __init__(self, **kwargs):
         StringProperty.__init__(self, **kwargs)
-        
+
+class DateTimeProperty(ndb.DateTimeProperty):
+    def __init__(self, **kwargs):
+        ndb.DateTimeProperty.__init__(self, **kwargs)
