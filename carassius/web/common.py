@@ -79,7 +79,8 @@ class ActivationHandler(webapp2.RequestHandler):
         if token:
             token.activate()
             self.render(True)
-        self.render(False)
+        else:
+            self.render(False)
 
     def render(self, success):
         template = jinja2.env.get_template("activate.html")
